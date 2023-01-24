@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./src/styles/index.css" />
+  <title>Vite App</title>
+</head>
+
+<body>
+  <div id="app"></div>
+
+  <div x-data="loveCounter">
+    <h1 class="text-2xl bg-red-300">Show some heart</h1>
+    <div x-text="hearts">
+    </div>
+    <div>
+      <button @click="love">Show 💟</button>
+    </div>
+  </div>
+
+  <div x-data="fetchSomeData">
+    <template x-for="element in data">
+      <div x-text="element.title"></div>
+    </template>
+
+    <button type="button" x-on:click="reload">
+      Reload
+    </button>
+  </div>
+
+
+  <script type="module" src="./src/components/main.js"></script>
+</body>
+
+</html>
