@@ -21,7 +21,7 @@
     </div>
   </div>
 
-  <div x-data="fetchSomeData">
+  <div x-data="">
     <template x-for="element in data">
       <div x-text="element.title"></div>
     </template>
@@ -29,6 +29,20 @@
     <button type="button" x-on:click="reload">
       Reload
     </button>
+  </div>
+
+  <div>
+    <form x-data="contactForm" @submit.prevent="submit">
+      <input type="text" x-model="data.title" name="title" id="title">
+      <input type="text" x-model="data.body" name="body" id="body">
+
+      <button type="submit" x-text="buttonText"
+       :disabled="loading">Submit</button>
+
+
+    </form>
+
+
   </div>
 
 
