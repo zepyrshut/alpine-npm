@@ -1,6 +1,7 @@
 export function submitSomeData() {
   return {
     people: [],
+    personId: 0,
     selected: "",
     isLoading: false,
     init() {

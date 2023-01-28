@@ -56,7 +56,7 @@
       <template x-for="(person, index) in people" :key="person.id">
         <!-- radio button -->
         <div>
-          <input class="peer hidden" type="radio" x-model="person.id" :value="person.id" :id="person.id">
+          <input class="peer hidden" type="radio" x-model="personId" :value="person.id" :id="person.id">
           <label @click="selection(person)" :for="person.id" x-text="person.name"></label>
         </div>
 
