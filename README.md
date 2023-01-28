@@ -1,12 +1,97 @@
-Ese proyecto tiene como objetivo comprender el funcionamiento de Alpine
+# Introducción
 
-## Introducción
+Ese proyecto tiene como objetivo comprender el funcionamiento de Alpine,
+Node.js, TailwindCSS y Prettier.
 
-Si bien, se puede hacer mediante script CDN, es mucho más facil organizar
-el código fuente mediante módulos y da un enfoque más robusto, al igual
-que con Tailwind, se puede importar por CDN, si se hace mediante módulo, 
-se aprovecha el potencial completo como purgado de código, eliminado 
-elementos que no utiliza.
+Este documento da por hecho que el lector ya tiene un conocimiento
+más que básico sobre las herramientas y tecnologías esenciales para el
+desarrollo _front-end_.
+
+# Tabla de contenidos
+
+1. Vite
+2. ESLint
+3. Prettier
+   1. Prettier y TailwindCSS
+4. Alpine JS
+   1. x-data y x-init
+   2. x-show y x-if
+
+# Vite
+Es una herramienta muy útil para el desarrolador *front-end* en el que
+hace un compilado de todo el proyecto, así como sus dependencias en un
+solo archivo JS y otro archivo CSS, acompañado de sus archivos HTML.
+
+La gran ventaja frente a sus competidores es la velocidad que tiene
+para empaquetar y poner a funcionar un proyecto, usa *esbuild*, que es
+entre 10 y 100 veces más rápido que otros empaquetadores.
+
+Además incluye facilidades en el desarrollo como el uso de variables de
+entorno sin necesidad de añadir más dependencias.
+
+# ESLint
+
+Herramienta que analiza el código en búsqueda de problemas que pueden
+ser de sintaxis, detección de malas prácticas como código duplicado o
+abuso de cadena de caracteres entre otras cosas. Se instala ejecutando
+el comando:
+
+> ` npm init @eslint/config`
+
+La configuración es muy sencilla, que puede variar en cada proyecto,
+se recomienda encarecidamente leer cada paso del manual y elegir la
+opción adecuada, para este proyecto ha sido la siguiente:
+
+- Cosas a analizar: _To check syntax and find problems_.
+- Uso de los módulos JS: _JavaScript modules (import/export)_.
+- Pregunta por el _framework_: _None of these_.
+- Pregunta si se usa _TypeScript_: _No_.
+- Entorno de ejecución: _Node_.
+- Formato de fichero de configuración: _JSON_
+
+Listo.
+
+# Prettier
+
+Es una herramienta que da formato a los archivos para seguir todos unas
+mismas reglas y formatos. Se instala ejecutando el comando:
+
+> `npm install prettier`
+
+Hay varias formas de ser configurado y ejecutado, en este caso es
+configurado mediante el archivo ubicado en la carpeta raíz del proyecto
+`.prettierrc.json` y ejecutado mediante el comando:
+
+> `npx prettier --write <file.ext>`
+
+Aunque dejo una aclaración: por comodidad puede ser también ejecutado
+mediante la extensión con el mismo nombre en el propio IDE, la
+extensión puede tener sus propios archivos de configuración globales o
+bien, leer el archivo de configuración en el propio proyecto, siendo
+ésta última la que tiene preferencia.
+
+Para la comodida absoluta, se puede configurar que el comando sea
+ejecutado cada vez que se guarde el fichero. Estas opciones se deja a
+elección del programador, pero para un proyecto en grupo sería
+conveniente tenerlo activado y así dar el formato antes de hacer la
+confirmación y subida al repositorio.
+
+De momento para todos y cada uno de los lenguajes se usa la
+configuración por defecto.
+
+## Prettier y TailwindCSS
+
+Hay un _plugin_ que se integra con Prettier que consiste en ordenar las
+clases Tailwind, ordenándose y agrupándose. En este proyecto ya viene
+configurado, pero para un próximo proyecto basta con añadir Prettier y
+el dicho _plugin_.
+
+> ` npm install -D prettier prettier-plugin-tailwindcss`
+
+Para ejecutarse basta con guardar el proyecto o ejecutar el comando
+mencionado en el apartado anterior.
+
+# Alpinejs
 
 Alpine tiene como objetivo ofrecer una librería muy ligera y con
 posibilidad de añadir funcionalidades mediante plugins.
@@ -53,10 +138,11 @@ export function fetchSomeData() {
   };
 }
 ```
+
 Es una simple función en la que retorna un objeto con varios atributos
-e incluso dos funciones. Pues la función ```init()``` pertenece a la
+e incluso dos funciones. Pues la función `init()` pertenece a la
 directiva x-init y será lo primero que se ejecuta cuando la función
-```fetchSomeData()``` es llamada desde la directiva x-data. Tal que el
+`fetchSomeData()` es llamada desde la directiva x-data. Tal que el
 fragmento quedaría así:
 
 ```
@@ -69,19 +155,21 @@ fragmento quedaría así:
       Reload
     </button>
   </div>
-````
-Observa que desde ```x-data"fetchSomeData"``` obtiene todos los datos,
-la función ```init()``` será encargada de extraer elementos desde la API
-y será asociada a ```data```, con lo cual se puede usar para iterarse en
-```x-for="element in data"```.
+```
 
-Se podría mejorar añadiendo elementos como ```isLoading``` o ```isError```.
+Observa que desde `x-data"fetchSomeData"` obtiene todos los datos,
+la función `init()` será encargada de extraer elementos desde la API
+y será asociada a `data`, con lo cual se puede usar para iterarse en
+`x-for="element in data"`.
+
+Se podría mejorar añadiendo elementos como `isLoading` o
+`isError`.
 
 ## x-show y x-if
 
 La dinámica de ambas directivas son las mismas, mostrar o no un elemento
 en la vista, sin embargo el funcionamiento es diferente en cada una. Con
 x-show muestra y oculta elementos añadiendo funcionalidades CSS, no se
-elimina desde el DOM, y x-if hace lo mismo, pero eliminándose o añadiéndose
-al DOM. La directiva x-show funciona con transiciones y animaciones
-mientras con la otra no lo permite.
+elimina desde el DOM, y x-if hace lo mismo, pero eliminándose o
+añadiéndose al DOM. La directiva x-show funciona con transiciones y
+animaciones mientras con la otra no lo permite.

@@ -1,18 +1,8 @@
-import Alpine from 'alpinejs'
-import { loveCounter } from './loveCounter'
-import { fetchSomeData } from './fetchSomeData'
-import { contactForm } from './contactForm'
-import { submitSomeData } from './submitSomeData'
+import Alpine from "alpinejs";
+import { loginForm } from "./loginForm";
 
-window.Alpine = Alpine
+window.Alpine = Alpine;
 
-Alpine.data('loveCounter', loveCounter)
-Alpine.data('fetchSomeData', fetchSomeData)
-Alpine.data('contactForm', contactForm)
-Alpine.data('label', () => ({ text: 'Hello World'}))
-Alpine.data('submitSomeData', submitSomeData)
+Alpine.data("loginForm", loginForm);
 
-Alpine.start()
-
-// son funciones que retornan un objeto con los datos
-// que se necesite en data
+Alpine.start();
