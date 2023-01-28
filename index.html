@@ -21,7 +21,7 @@
     </div>
   </div>
 
-  <div x-data="">
+  <!-- <div x-data="fetchSomeData">
     <template x-for="element in data">
       <div x-text="element.title"></div>
     </template>
@@ -29,7 +29,7 @@
     <button type="button" x-on:click="reload">
       Reload
     </button>
-  </div>
+  </div> -->
 
   <div>
     <form x-data="contactForm" @submit.prevent="submit">
@@ -43,6 +43,30 @@
     </form>
 
 
+  </div>
+
+
+  <div>
+    <button x-data="label" x-text="text">xxx</button>
+  </div>
+
+  <div x-data="submitSomeData">
+    <form @submit.prevent="submit">
+
+      <template x-for="(person, index) in people" :key="person.id">
+        <!-- radio button -->
+        <div>
+          <input class="peer hidden" type="radio" x-model="person.id" :value="person.id" :id="person.id">
+          <label @click="selection(person)" :for="person.id" x-text="person.name"></label>
+        </div>
+
+      </template>
+
+      <button type="submit">Submit</button>
+    </form>
+
+
+    <p>selected value <span x-text="selected.name"></span></p>
   </div>
 
 
