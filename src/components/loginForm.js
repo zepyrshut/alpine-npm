@@ -5,7 +5,6 @@ const API_URL = import.meta.env.VITE_API_URL;
 export function loginForm() {
   return {
     user: {
-      id: undefined,
       name: "",
       email: "",
     },
@@ -19,7 +18,6 @@ export function loginForm() {
           "Content-type": "application/json; charset=UTF-8",
         },
         body: JSON.stringify({
-          id: this.user.id ? this.user.id : 0,
           name: this.user.name,
           email: this.user.email,
         }),
@@ -35,7 +33,6 @@ export function loginForm() {
           this.isLoading = false;
           this.isError = false;
           this.user = {
-            id: undefined,
             name: "",
             email: "",
           };

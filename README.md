@@ -100,7 +100,16 @@ posibilidad de añadir funcionalidades mediante plugins.
 Y ahora una breve descripción de las directivas y su relación entre
 ellas.
 
-## x-data y x-init
+## Directivas
+
+Usadas en el proyecto:
+
+- x-data
+- x-text
+- x-model
+- x-if
+
+### x-data y x-init
 
 x-data: la más importante de todas, la que hace determinar que un
 fragmento HTML es tratado como un componente de Alpine. Puede contener
@@ -166,7 +175,7 @@ y será asociada a `data`, con lo cual se puede usar para iterarse en
 Se podría mejorar añadiendo elementos como `isLoading` o
 `isError`.
 
-## x-show y x-if
+### x-show y x-if
 
 La dinámica de ambas directivas son las mismas, mostrar o no un elemento
 en la vista, sin embargo el funcionamiento es diferente en cada una. Con
@@ -175,7 +184,27 @@ elimina desde el DOM, y x-if hace lo mismo, pero eliminándose o
 añadiéndose al DOM. La directiva x-show funciona con transiciones y
 animaciones mientras con la otra no lo permite.
 
-## x-efect
+### x-effect
 
 Se ejecuta inmediatamente después de que cualquier valor ubicado en
 `x-data` cambie.
+
+## Magias
+
+Usadas en el proyecto:
+
+- $dispatch
+
+### $dispatch
+
+Es un atajo bastante considerable para despachar eventos en el
+navegador. Supongamos que está el caso de se quiera ejecutar un evento
+personlizado después de hacer una acción.
+
+Basta con poner el nombre al nuevo evento:
+`@nombre-nuevo-evento.window="nombreFuncionAsociada"` y para despachar
+el evento se le llama con
+`$dispatch('nombre-nuevo-evento', nuevosValores)`, tambén se puede
+ejecutar el evento de forma tradicional con
+`window.dispatchEvent(new Event("nombre-nuevo-evento"))`. En el código
+viene bien representado el ejemplo.
