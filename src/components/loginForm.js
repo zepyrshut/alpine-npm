@@ -26,13 +26,12 @@ export function loginForm() {
       })
         .then((response) => response.json())
         .then((json) => {
-          console.log(json);
           notie.alert({
             type: "success",
             text: "Sesión iniciada correctamente",
             time: 2,
           });
-          sessionStorage.setItem("user", JSON.stringify(json));
+          updateSessionStorage(json);
           this.isLoading = false;
           this.isError = false;
           this.user = {
@@ -53,4 +52,12 @@ export function loginForm() {
         });
     },
   };
+}
+
+function updateSessionStorage(user) {
+  if (sessionStorage.getItem("user")) {
+    sessionStorage.removeItem("user");
+  }
+  sessionStorage.setItem("user", JSON.stringify(user));
+  window.dispatchEvent(new Event("set-user-in-session"));
 }

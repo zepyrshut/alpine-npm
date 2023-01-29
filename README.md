@@ -18,12 +18,13 @@ desarrollo _front-end_.
    2. x-show y x-if
 
 # Vite
-Es una herramienta muy útil para el desarrolador *front-end* en el que
+
+Es una herramienta muy útil para el desarrolador _front-end_ en el que
 hace un compilado de todo el proyecto, así como sus dependencias en un
 solo archivo JS y otro archivo CSS, acompañado de sus archivos HTML.
 
 La gran ventaja frente a sus competidores es la velocidad que tiene
-para empaquetar y poner a funcionar un proyecto, usa *esbuild*, que es
+para empaquetar y poner a funcionar un proyecto, usa _esbuild_, que es
 entre 10 y 100 veces más rápido que otros empaquetadores.
 
 Además incluye facilidades en el desarrollo como el uso de variables de
@@ -173,3 +174,8 @@ x-show muestra y oculta elementos añadiendo funcionalidades CSS, no se
 elimina desde el DOM, y x-if hace lo mismo, pero eliminándose o
 añadiéndose al DOM. La directiva x-show funciona con transiciones y
 animaciones mientras con la otra no lo permite.
+
+## x-efect
+
+Se ejecuta inmediatamente después de que cualquier valor ubicado en
+`x-data` cambie.
