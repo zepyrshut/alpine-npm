@@ -1,4 +1,5 @@
 import notie from "notie";
+import { updateSessionStorage } from "../utils/functions.js";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -29,7 +30,8 @@ export function loginForm() {
             text: "Sesión iniciada correctamente",
             time: 2,
           });
-          updateSessionStorage(json);
+          updateSessionStorage("user", json);
+          window.dispatchEvent(new Event("set-user-in-session"));
           this.isLoading = false;
           this.isError = false;
           this.user = {
@@ -49,12 +51,4 @@ export function loginForm() {
         });
     },
   };
-}
-
-function updateSessionStorage(user) {
-  if (sessionStorage.getItem("user")) {
-    sessionStorage.removeItem("user");
-  }
-  sessionStorage.setItem("user", JSON.stringify(user));
-  window.dispatchEvent(new Event("set-user-in-session"));
 }

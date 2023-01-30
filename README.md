@@ -1,7 +1,7 @@
 # Introducción
 
 Ese proyecto tiene como objetivo comprender el funcionamiento de Alpine,
-Node.js, TailwindCSS y Prettier.
+Node.js, TailwindCSS, Prettier y ESLint.
 
 Este documento da por hecho que el lector ya tiene un conocimiento
 más que básico sobre las herramientas y tecnologías esenciales para el
@@ -14,8 +14,13 @@ desarrollo _front-end_.
 3. Prettier
    1. Prettier y TailwindCSS
 4. Alpine JS
-   1. x-data y x-init
-   2. x-show y x-if
+   1. Directivas
+      1. x-data y x-init
+      2. x-show y x-if
+      3. x-effect
+   2. Magias
+      1. $dispatch
+5. Agradecimientos
 
 # Vite
 
@@ -108,6 +113,7 @@ Usadas en el proyecto:
 - x-text
 - x-model
 - x-if
+- x-show
 
 ### x-data y x-init
 
@@ -208,3 +214,16 @@ el evento se le llama con
 ejecutar el evento de forma tradicional con
 `window.dispatchEvent(new Event("nombre-nuevo-evento"))`. En el código
 viene bien representado el ejemplo.
+
+# Agradecimientos
+
+Este proyecto no hubiese sido posible sin estos usuarios:
+
+- [Danny St. Pierre](https://codepen.io/bloqhead/pen/wvxoJKQ) - El
+  concepto de _$dispatch_ y la comunicación entre un componente y otro.
+- [Raymond Camden](https://www.raymondcamden.com/2022/05/02/building-table-sorting-and-pagination-in-alpinejs) - Ordenamiento y
+  paginación de tablas.
+- [HyperUI](https://www.hyperui.dev/) - Biblioteca _open source_ de
+  componentes TailwindCSS.
+- [HyperJS](https://js.hyperui.dev/) - Biblioteca _open source_ de
+  componentes AlpineJS con TailwindCSS.
