@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./src/styles/index.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://unpkg.com/notie/dist/notie.min.css"
+    />
+    <title>Inicio</title>
+  </head>
+
+  <body x-data="darkModeToggler">
+    <div class="container w-full bg-white dark:bg-black">
+      <div class="">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias delectus
+        maxime minus, sint quae necessitatibus, aliquam totam error molestias
+        deserunt distinctio! Impedit, sunt. Voluptatibus aliquam repellendus
+        numquam quis sunt ad.
+      </div>
+    </div>
+
+    <button @click="toggleDarkMode">toggle darkmode</button>
+
+    <script type="module" src="./src/components/main.js"></script>
+  </body>
+</html>
