@@ -1,8 +1,8 @@
-function updateSessionStorage(name, data) {
-  if (sessionStorage.getItem(name)) {
-    sessionStorage.removeItem(name);
+function updateSessionStorage (name, data) {
+  if (window.sessionStorage.getItem(name)) {
+    window.sessionStorage.removeItem(name)
   }
-  sessionStorage.setItem(name, JSON.stringify(data));
+  window.sessionStorage.setItem(name, JSON.stringify(data))
 }
 
-export { updateSessionStorage };
+export { updateSessionStorage }

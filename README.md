@@ -11,16 +11,17 @@ desarrollo _front-end_.
 
 1. Vite
 2. ESLint
-3. Prettier
+3. Standard
+4. Prettier
    1. Prettier y TailwindCSS
-4. Alpine JS
+5. Alpine JS
    1. Directivas
       1. x-data y x-init
       2. x-show y x-if
       3. x-effect
    2. Magias
       1. $dispatch
-5. Agradecimientos
+6. Agradecimientos
 
 # Vite
 
@@ -48,14 +49,40 @@ La configuración es muy sencilla, que puede variar en cada proyecto,
 se recomienda encarecidamente leer cada paso del manual y elegir la
 opción adecuada, para este proyecto ha sido la siguiente:
 
-- Cosas a analizar: _To check syntax and find problems_.
+- Cosas a analizar: _To check syntax, find problems and enforce code
+  style_.
 - Uso de los módulos JS: _JavaScript modules (import/export)_.
 - Pregunta por el _framework_: _None of these_.
 - Pregunta si se usa _TypeScript_: _No_.
 - Entorno de ejecución: _Node_.
+- Uso de estilos populares: _Standard_.
 - Formato de fichero de configuración: _JSON_
 
 Listo.
+
+# Standard
+
+Es una librería que funciona gracias a ESLint, que las reglas de formato
+de código se adhiere a -intento- un estándar de JS.
+[Fuente](https://standardjs.com/index.html)
+
+La parte positiva que muchas empresas y organizaciones apoyan y confían
+en el uso de _Standard_.
+
+Se instala con el comando:
+
+> `npm install --save-dev standard`
+
+Y se ejecuta con el comando:
+
+> `npx standard --fix`
+
+Es necesario, si se va a instalar Prettier, añadir el fichero
+`.prettierignore` y escribir en él `*.js` para que no se pisen entre
+el formateador ESLint y Prettier.
+
+Para automatizar ese comando, vaya al apartado Prettier, penúltimo
+párrafo.
 
 # Prettier
 
