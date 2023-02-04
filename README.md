@@ -1,7 +1,8 @@
 # Introducción
 
 Ese proyecto tiene como objetivo comprender el funcionamiento de Alpine,
-Node.js, TailwindCSS, Prettier y ESLint.
+Node.js, TailwindCSS, Prettier y ESLint, en JavaScript. Puede diferir
+ligeramente si se requiere programar en TypeScript.
 
 Este documento da por hecho que el lector ya tiene un conocimiento
 más que básico sobre las herramientas y tecnologías esenciales para el
@@ -10,18 +11,23 @@ desarrollo _front-end_.
 # Tabla de contenidos
 
 1. Vite
-2. ESLint
-3. Standard
-4. Prettier
+2. TailwindCSS
+3. ESLint
+4. Standard
+5. Prettier
    1. Prettier y TailwindCSS
-5. Alpine JS
+   2. Prettier y atributos HTML
+6. Ganchos _pre-commit_
+   1. Lint-staged
+   2. Husky
+7. Alpine JS
    1. Directivas
       1. x-data y x-init
       2. x-show y x-if
       3. x-effect
    2. Magias
       1. $dispatch
-6. Agradecimientos
+8. Agradecimientos y fuentes
 
 # Vite
 
@@ -35,6 +41,14 @@ entre 10 y 100 veces más rápido que otros empaquetadores.
 
 Además incluye facilidades en el desarrollo como el uso de variables de
 entorno sin necesidad de añadir más dependencias.
+
+# TailwindCSS
+
+Es un _framework_ CSS orientado a utilidad, en el que se pueden escribir
+clases CSS directamente en el HTML. Hay varios pasos, para ello sólo hay
+que seguir esta guía:
+
+[Guía de instalación TailwindCSS en Vite](https://tailwindcss.com/docs/guides/vite).
 
 # ESLint
 
@@ -58,13 +72,25 @@ opción adecuada, para este proyecto ha sido la siguiente:
 - Uso de estilos populares: _Standard_.
 - Formato de fichero de configuración: _JSON_
 
+Para automarizar el formateo de código cada vez que se guarda el
+documento, abrir el archivo `settings.json` (Paleta de comandos seguido
+de "open settings .json") y añadir estas líneas:
+
+```
+"editor.codeActionsOnSave": {
+  "source.fixAll.eslint": true
+},
+```
+
+Y tener activada el formato de código al guardar. Sin embargo, en el
+apartado Ganchos pre-commit hay elementos interesantes.
+
 Listo.
 
 # Standard
 
 Es una librería que funciona gracias a ESLint, que las reglas de formato
 de código se adhiere a -intento- un estándar de JS.
-[Fuente](https://standardjs.com/index.html)
 
 La parte positiva que muchas empresas y organizaciones apoyan y confían
 en el uso de _Standard_.
@@ -80,9 +106,6 @@ Y se ejecuta con el comando:
 Es necesario, si se va a instalar Prettier, añadir el fichero
 `.prettierignore` y escribir en él `*.js` para que no se pisen entre
 el formateador ESLint y Prettier.
-
-Para automatizar ese comando, vaya al apartado Prettier, penúltimo
-párrafo.
 
 # Prettier
 
@@ -103,12 +126,6 @@ extensión puede tener sus propios archivos de configuración globales o
 bien, leer el archivo de configuración en el propio proyecto, siendo
 ésta última la que tiene preferencia.
 
-Para la comodida absoluta, se puede configurar que el comando sea
-ejecutado cada vez que se guarde el fichero. Estas opciones se deja a
-elección del programador, pero para un proyecto en grupo sería
-conveniente tenerlo activado y así dar el formato antes de hacer la
-confirmación y subida al repositorio.
-
 De momento para todos y cada uno de los lenguajes se usa la
 configuración por defecto.
 
@@ -123,6 +140,89 @@ el dicho _plugin_.
 
 Para ejecutarse basta con guardar el proyecto o ejecutar el comando
 mencionado en el apartado anterior.
+
+## Prettier y atributos HTML
+
+Hay otro _plugin_ que consiste en ordenar los atributos HTML, cumple
+con su función y no tiene mucho misterio.
+
+> `npm install prettier-plugin-organize-attributes`
+
+El proyecto debe existir el archivo `.prettierrc`, y en él, incluir la
+siguiente línea para una configuración por defecto:
+
+```
+{
+"attributeGroups": ["^class$", "^(id|name)$", "$DEFAULT", "^aria-"]
+}
+```
+
+En él se puede añadir elementos en expresión regular y se cumplen
+según las coincidencias.
+
+También existen configuraciones hechas para React, Vue y Angular.
+
+# Ganchos _pre-commit_
+
+Es un sistema que automatiza el proceso de la comprobación de código y
+el formato antes de hacer un _commit_ a un repositorio, en caso de duda
+o error al ejecutarse el gancho, se cancela el proceso y obliga al
+usuario arreglar dichos problemas. Para ello se necesita tener instalado
+y configurado ESLint y Prettier. Las herramientas que toca son _Husky_ y
+_Lint-staged_.
+
+## Lint-staged
+
+Obliga a Husky a analizar solamente las líneas de código realizadas por
+el desarrollador al momento de hacer el _commit_ y no todo o todos los
+archivos.
+
+> `npm install lint-staged --save-dev`
+
+No hay que hacer nada más.
+
+## Husky
+
+Contiene una serie de _scripts_ que se ejecutan al hacer un _commit_,
+cada _script_ contiene toda la información necesaria para analizar con
+ESLint y darle formato al código con Prettier.
+
+> `npm install husky --save-dev`
+
+Una vez instalado, hay que añadir las siguientes lineas al fichero
+`package.json`.
+
+```
+"lint-staged": {
+  "src/**/*.{html,scss}": [
+    "prettier --write"
+  ],
+  "src/**/*.{js,ts}": [
+    "eslint --fix"
+  ]
+},
+"husky": {
+  "hooks": {
+    "pre-commit": "lint-staged"
+  }
+}
+```
+
+El comando _lint-staged_ ejecuta el comando `prettier --write`, que
+dará formato a todo código fuente que contengan la extensiones `html` y
+`scss`, personalizar al gusto del desarrollador, y, posteriormente, el
+comando `eslint --fix`, que pasará ESLint en busca de fallo y lo
+corrige de forma automática si procede.
+
+Ejecutar el siguiente comando para generar la serie de _scripts_ de
+_Husky_.
+
+> `npm pkg set scripts.prepare="husky install"`
+
+> `npm run prepare`
+
+¡Listo! Ahora, cuando hagas un _commit_, antes se analiza todo el
+código fuente, y se formatea.
 
 # Alpinejs
 
@@ -242,7 +342,7 @@ ejecutar el evento de forma tradicional con
 `window.dispatchEvent(new Event("nombre-nuevo-evento"))`. En el código
 viene bien representado el ejemplo.
 
-# Agradecimientos
+# Agradecimientos y fuentes
 
 Este proyecto no hubiese sido posible sin estos usuarios:
 
@@ -254,3 +354,11 @@ Este proyecto no hubiese sido posible sin estos usuarios:
   componentes TailwindCSS.
 - [HyperJS](https://js.hyperui.dev/) - Biblioteca _open source_ de
   componentes AlpineJS con TailwindCSS.
+- [StandardJS](https://standardjs.com/) - Convenciones para normalizar
+  el formato de código JavaScript.
+- [Organize attributes](https://www.npmjs.com/package/prettier-plugin-organize-attributes)
+  \- Plugin para ordenar los atributos HTML.
+- [Automatically formatting and cleaning code on commit](https://blogs.halodoc.io/automatically-formatting-and-beautifying-code-on-commit/) - Tutorial
+  para el uso de ganchos _pre-commits_.
+- [Install TailwindCSS with Vite](https://tailwindcss.com/docs/guides/vite)
+  \- Instalación de TailwindCSS en Vite.
