@@ -60,7 +60,7 @@ export function fetchDataCheckbox () {
     },
     get paginatedData () {
       if (this.data) {
-        return this.data.filter((row, index) => {
+        return this.data.filter((index) => {
           const start = (this.currentPage - 1) * this.pageSize
           const end = this.currentPage * this.pageSize
           return index >= start && index < end

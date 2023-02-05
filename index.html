@@ -31,51 +31,51 @@
           <div class="mt-2">
             <form x-data="loginForm" @submit.prevent="submit">
               <label
-                for="name"
                 class="mt-1 block text-sm font-medium text-gray-700"
+                for="name"
                 >Nombre</label
               >
               <div class="mt-2">
                 <input
-                  type="text"
+                  class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                   name="name"
                   id="name"
+                  type="text"
                   x-model="user.name"
-                  class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                   placeholder="Juan"
                 />
               </div>
               <label
-                for="email"
                 class="mt-1 block text-sm font-medium text-gray-700"
+                for="email"
                 >Email</label
               >
               <div class="mt-2">
                 <input
-                  type="email"
+                  class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                   name="email"
                   id="email"
+                  type="email"
                   x-model="user.email"
-                  class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                   placeholder="juan@ejemplo.com"
                 />
               </div>
               <div class="mt-2"></div>
               <div class="flex justify-end">
                 <button
+                  class="mt-2 w-24 rounded bg-indigo-500 px-4 py-2 font-bold text-white hover:bg-indigo-700"
                   type="submit"
                   :disabled="isLoading"
-                  class="mt-2 w-24 rounded bg-indigo-500 px-4 py-2 font-bold text-white hover:bg-indigo-700"
                 >
                   <div class="flex items-center justify-center">
                     <template x-if="isLoading">
                       <div role="status">
                         <svg
-                          aria-hidden="true"
                           class="h-6 w-6 animate-spin fill-indigo-300 text-indigo-600"
                           viewBox="0 0 100 101"
                           fill="none"
                           xmlns="http://www.w3.org/2000/svg"
+                          aria-hidden="true"
                         >
                           <path
                             d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
@@ -124,9 +124,9 @@
               </p>
               <div class="flex justify-end">
                 <button
+                  class="mt-2 rounded bg-indigo-500 px-4 py-2 font-bold text-white hover:bg-indigo-700"
                   @click="closeSession"
                   type="submit"
-                  class="mt-2 rounded bg-indigo-500 px-4 py-2 font-bold text-white hover:bg-indigo-700"
                 >
                   <div class="flex items-center justify-center">
                     <span>Cerrar sesión</span>
@@ -168,20 +168,20 @@
 
                       <input
                         class="h-5 w-5 rounded border-gray-200"
-                        type="checkbox"
                         id="SelectAll"
+                        type="checkbox"
                       />
                     </th>
                     <th
-                      @click="sort('userId')"
                       class="cursor-pointer whitespace-nowrap px-4 py-2 text-left font-medium text-gray-900"
+                      @click="sort('userId')"
                     >
                       <div class="flex items-center gap-2">
                         ID usuario
 
                         <svg
-                          xmlns="http://www.w3.org/2000/svg"
                           class="h-4 w-4 text-gray-700 transition"
+                          xmlns="http://www.w3.org/2000/svg"
                           :class="sortCol  === 'userId' && sortAsc ? 'rotate-180' : 'rotate-0'"
                           viewBox="0 0 20 20"
                           fill="currentColor"
@@ -196,15 +196,15 @@
                     </th>
 
                     <th
-                      @click="sort('id')"
                       class="cursor-pointer whitespace-nowrap px-4 py-2 text-left font-medium text-gray-900"
+                      @click="sort('id')"
                     >
                       <div class="flex items-center gap-2">
                         ID
 
                         <svg
-                          xmlns="http://www.w3.org/2000/svg"
                           class="h-4 w-4 text-gray-700 transition"
+                          xmlns="http://www.w3.org/2000/svg"
                           :class="sortCol  === 'id' && sortAsc ? 'rotate-180' : 'rotate-0'"
                           viewBox="0 0 20 20"
                           fill="currentColor"
@@ -218,15 +218,15 @@
                       </div>
                     </th>
                     <th
-                      @click="sort('title')"
                       class="cursor-pointer whitespace-nowrap px-4 py-2 text-left font-medium text-gray-900"
+                      @click="sort('title')"
                     >
                       <div class="flex items-center gap-2">
                         Título
 
                         <svg
-                          xmlns="http://www.w3.org/2000/svg"
                           class="h-4 w-4 text-gray-700 transition"
+                          xmlns="http://www.w3.org/2000/svg"
                           :class="sortCol  === 'title' && sortAsc ? 'rotate-180' : 'rotate-0'"
                           viewBox="0 0 20 20"
                           fill="currentColor"
@@ -241,14 +241,14 @@
                     </th>
 
                     <th
-                      @click="sort('completed')"
                       class="cursor-pointer whitespace-nowrap px-4 py-2 text-left font-medium text-gray-900"
+                      @click="sort('completed')"
                     >
                       <div class="flex items-center gap-2">
                         Completado
                         <svg
-                          xmlns="http://www.w3.org/2000/svg"
                           class="h-4 w-4 text-gray-700 transition"
+                          xmlns="http://www.w3.org/2000/svg"
                           :class="sortCol  === 'completed' && sortAsc ? 'rotate-180' : 'rotate-0'"
                           viewBox="0 0 20 20"
                           fill="currentColor"
@@ -295,8 +295,8 @@
                       </td>
                       <td class="whitespace-nowrap px-4 py-2">
                         <strong
-                          :class="todo.completed ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'"
                           class="rounded px-3 py-1.5 text-xs font-medium"
+                          :class="todo.completed ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'"
                           x-text="todo.completed ? 'Completado' : 'No completado'"
                         >
                           todo.completed
@@ -311,13 +311,13 @@
             <div class="m-3 flex items-center justify-center">
               <div class="inline-flex items-center justify-center gap-3">
                 <button
-                  @click="prevPage"
                   class="inline-flex h-8 w-8 items-center justify-center rounded border border-gray-100"
+                  @click="prevPage"
                 >
                   <span class="sr-only">Página anterior</span>
                   <svg
-                    xmlns="http://www.w3.org/2000/svg"
                     class="h-3 w-3"
+                    xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"
                     fill="currentColor"
                   >
@@ -336,13 +336,13 @@
                 </p>
 
                 <button
-                  @click="nextPage"
                   class="inline-flex h-8 w-8 items-center justify-center rounded border border-gray-100"
+                  @click="nextPage"
                 >
                   <span class="sr-only">Siguiente página</span>
                   <svg
-                    xmlns="http://www.w3.org/2000/svg"
                     class="h-3 w-3"
+                    xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"
                     fill="currentColor"
                   >
@@ -384,9 +384,9 @@
                       :id="person.id"
                     />
                     <label
+                      class="flex cursor-pointer items-center justify-between rounded-lg border border-gray-100 p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked:border-indigo-500 peer-checked:ring-1 peer-checked:ring-indigo-500"
                       @click="selection(person)"
                       :for="person.id"
-                      class="flex cursor-pointer items-center justify-between rounded-lg border border-gray-100 p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked:border-indigo-500 peer-checked:ring-1 peer-checked:ring-indigo-500"
                     >
                       <p x-text="person.name">person.name</p>
                       <p x-text="person.email">person.email</p>

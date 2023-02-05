@@ -1,0 +1,8 @@
+{
+  "attributeGroups": [
+    "^class$",
+    "^(id|name)$",
+    "$DEFAULT",
+    "^aria-"
+  ]
+}

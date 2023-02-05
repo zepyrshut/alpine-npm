@@ -146,7 +146,7 @@ mencionado en el apartado anterior.
 Hay otro _plugin_ que consiste en ordenar los atributos HTML, cumple
 con su función y no tiene mucho misterio.
 
-> `npm install prettier-plugin-organize-attributes`
+> `npm install -D prettier-plugin-organize-attributes`
 
 El proyecto debe existir el archivo `.prettierrc`, y en él, incluir la
 siguiente línea para una configuración por defecto:
