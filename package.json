@@ -37,6 +37,9 @@
     ],
     "src/**/*.{js,ts}": [
       "eslint --fix"
+    ],
+    "./**/*.{html,css,scss}": [
+      "prettier --write"
     ]
   },
   "husky": {

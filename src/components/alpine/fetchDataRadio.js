@@ -22,12 +22,23 @@ export function fetchDataRadio () {
     reloadData () {
       this.loading = true
       fetch(`${API_URL}/users`)
-        .then((response) => response.json())
-        .then((json) => {
-          this.people = json
+        .then(async (response) => {
+          const data = await response.json()
+          if (!response.ok) {
+            const error = (data && data.message) || response.status
+            notie.alert({
+              type: 'error',
+              text: 'Hubo algún error al cargar los datos',
+              time: 2
+            })
+            this.isLoading = false
+            this.isError = true
+            return Promise.reject(error)
+          }
+          this.people = data
           this.isLoading = false
           this.isError = false
-          updateSessionStorage('users', json)
+          updateSessionStorage('users', data)
         })
         .catch(() => {
           notie.alert({

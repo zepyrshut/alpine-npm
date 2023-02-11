@@ -24,16 +24,28 @@ export function fetchDataCheckbox () {
     reloadData () {
       this.isLoading = true
       fetch(`${API_URL}/todos`)
-        .then((response) => response.json())
-        .then((json) => {
-          json.forEach((d, i) => (d.id = i))
-          this.data = json
+        .then(async (response) => {
+          const data = await response.json()
+          console.log(data)
+          if (!response.ok) {
+            const error = (data && data.message) || response.status
+            notie.alert({
+              type: 'error',
+              text: 'Hubo algún error al cargar los datos',
+              time: 2
+            })
+            this.isLoading = false
+            this.isError = true
+            return Promise.reject(error)
+          }
+          data.forEach((d, i) => (d.id = i))
+          console.log(data)
+          this.data = data
           this.isLoading = false
           this.isError = false
-          updateSessionStorage('todos', json)
+          updateSessionStorage('todos', data)
         })
-        .catch((error) => {
-          console.log(error)
+        .catch(() => {
           notie.alert({
             type: 'error',
             text: 'Hubo algún error al cargar los datos',
@@ -60,7 +72,7 @@ export function fetchDataCheckbox () {
     },
     get paginatedData () {
       if (this.data) {
-        return this.data.filter((index) => {
+        return this.data.filter((row, index) => {
           const start = (this.currentPage - 1) * this.pageSize
           const end = this.currentPage * this.pageSize
           return index >= start && index < end

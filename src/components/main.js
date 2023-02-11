@@ -6,8 +6,6 @@ import { fetchDataRadio } from './alpine/fetchDataRadio'
 import { loginForm } from './alpine/loginForm'
 import { userSession } from './alpine/userSession'
 
-import '../styles/custom.css'
-
 window.Alpine = Alpine
 
 Alpine.data('loginForm', loginForm)
