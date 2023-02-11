@@ -1,8 +1,7 @@
 {
   "attributeGroups": [
-    "^class$",
-    "^(id|name)$",
-    "$DEFAULT",
-    "^aria-"
+    "^x-*",
+    "$CODE_GUIDE",
+    "^placeholder"
   ]
 }
